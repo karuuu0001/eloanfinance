@@ -107,7 +107,7 @@ class Visitor_portal extends CI_Controller {
 
 	public function profile_picture_edit()
 	{	
-		$this->_personal_information_edit_submit();
+	
 
 		$this->load->model('user_model');
 
@@ -115,7 +115,7 @@ class Visitor_portal extends CI_Controller {
 			$data['profile'] = $this->user_model->get_profile_information($id);
 
 		$this->load->view('visitor_portal/_header', $data);
-		$this->load->view('visitor_portal/personal_information_edit');
+		$this->load->view('visitor_portal/profile_picture_edit');
 		$this->load->view('visitor_portal/_footer');
 	}
 }
