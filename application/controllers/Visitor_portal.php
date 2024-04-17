@@ -27,6 +27,8 @@ class Visitor_portal extends CI_Controller {
 
 	public function index()
 	{	
+		
+
 		$this->load->view('visitor_portal/_header');
 		$this->load->view('visitor_portal/index');
 		$this->load->view('visitor_portal/_footer');
