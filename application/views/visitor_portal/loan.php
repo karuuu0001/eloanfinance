@@ -1,31 +1,57 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class = "row">
-                <div class = "cold-md-8">
-                  <body>
-                    
-                    
-    <div class="container">
-        <h1 class="my-4">Loan Application Dashboard</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Apply for a Loan</h5>
-                <form action="process_loan_application.php" method="post">
-                    <div class="col-md-8">
-                        <label for="loan_amount" class="form-label">Loan Amount</label>
-                        <input type="number" class="form-control" id="loan_amount" name="loan_amount" required>
-                    </div>
-                    <div class="col-md-8">
-                        <label for="interest_rate" class="form-label">Interest Rate (%)</label>
-                        <input type="number" class="form-control" id="interest_rate" name="interest_rate" required>
-                    </div>
-                    <div class="col-md-8 ">
-                        <label for="duration" class="form-label">Loan Duration (months)</label>
-                        <input type="number" class="form-control" id="duration" name="duration" required>
-                    </div>
-                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
-                    </div>
-                </form>
-            </div>
+<main>
+    
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$0<small class="text-body-secondary fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+          </div>
         </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15<small class="text-body-secondary fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29<small class="text-body-secondary fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+ 
