@@ -34,7 +34,6 @@ class Visitor_portal extends CI_Controller {
 		$this->load->view('visitor_portal/_footer');
 	}
 
-
 	public function loan()
 	{	
 		$this->load->view('visitor_portal/_header');
@@ -48,6 +47,7 @@ class Visitor_portal extends CI_Controller {
 		$this->load->view('visitor_portal/payment');
 		$this->load->view('visitor_portal/_footer');
 	}
+
 
 	public function personal_information()
 	{	

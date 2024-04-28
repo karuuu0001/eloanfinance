@@ -35,6 +35,7 @@ class User_model extends CI_Model {
 		}
 	}
 
+	
 	public function get_profile_information($id)
 	{
 		$this->db->where('user_id', $id);
@@ -172,5 +173,21 @@ class User_model extends CI_Model {
 		}
 
 	}
+// //////////////////temporary
+// 	public function select_package() {
+//         $user_id = $this->input->post('user_id'); // Assuming you're posting the user ID from a form
+//         $selected_loan_package = $this->input->post('loan_package'); // Assuming you're posting the selected loan package from a form
+
+//         // Update the selected loan package in the database
+//         $success = $this->account_model->update_selected_loan_package($user_id, $selected_loan_package);
+
+//         if ($success) {
+//             // Redirect or display success message
+//             echo " Loan Processed Please Wait.";
+//         } else {
+//             // Redirect or display error message
+//            echo "Cant Save";
+//         }
+//     }
 	
 }

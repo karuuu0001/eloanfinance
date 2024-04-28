@@ -56,8 +56,8 @@
             </div>
             <br>
             <li><a href="<?php echo site_url('visitor_portal/index'); ?>">Dashboard</a></li>
-						<li><a href="<?php echo site_url('visitor_portal/loan'); ?>">Loan Application</a></li>
-						<li><a href="<?php echo site_url('visitor_portal/payment'); ?>">Payment</a></li>
+            <li><a href="<?php echo site_url('visitor_portal/loan'); ?>">Loan Application</a></li>
+            <li><a href="<?php echo site_url('visitor_portal/payment'); ?>">Payment</a></li>
 						<li><a href="<?php echo site_url('visitor_portal/personal_information'); ?>">Personal Information</a></li>
           </ul>
 

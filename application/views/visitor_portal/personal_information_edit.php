@@ -24,7 +24,8 @@
 <!-- Form -->
 <?php echo form_open_multipart 
 ('visitor_portal/personal_information_edit', array ('onsubmit'=>'return confirm(\'Are you sure you want to save?\')'));
-?><div class="panel panel-default">
+?>
+<div class="panel panel-default">
     <div class="panel-heading"></div>
     <div class="panel-body">
       
