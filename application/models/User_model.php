@@ -45,7 +45,6 @@ class User_model extends CI_Model {
 		if ($row)
 		{
 			$row->personal_information = $this->get_personal_information($id);
-
 		}
 
 		return $row;
@@ -173,21 +172,36 @@ class User_model extends CI_Model {
 		}
 
 	}
-// //////////////////temporary
-// 	public function select_package() {
-//         $user_id = $this->input->post('user_id'); // Assuming you're posting the user ID from a form
-//         $selected_loan_package = $this->input->post('loan_package'); // Assuming you're posting the selected loan package from a form
+//////////////////
+	public function save_loan_record()
+	{
+		$loan_id = (int) $this->input->post('loan_id');
+		$user_id = (int) $this->input->post('user_id');
+		$amount = (string) $this->input->post('amount');
+		$contact_no = (string) $this->input->post('contact_no');
+		$gcash_name = (string) $this->input->post('gcash_name');
+		$email = (string) $this->input->post('email');
 
-//         // Update the selected loan package in the database
-//         $success = $this->account_model->update_selected_loan_package($user_id, $selected_loan_package);
+		$data = array(
+			'loan_id' => $loan_id,
+			'user_id' => $user_id,
+			'contact_no' => $contact_no,
+			'gcash_name' => $gcash_name,
+			'email' => $email,
+			'amount' => $amount,
+		);
 
-//         if ($success) {
-//             // Redirect or display success message
-//             echo " Loan Processed Please Wait.";
-//         } else {
-//             // Redirect or display error message
-//            echo "Cant Save";
-//         }
-//     }
-	
+
+		$response = $this->db->insert('loan_table', $data);
+
+		if( $response )
+		{
+			return $this->db->insert_id();
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
 }

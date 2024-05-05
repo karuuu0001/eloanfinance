@@ -35,7 +35,7 @@
 						<tr><th> Place of Birth:</th><td><?php echo $profile->personal_information->pob; ?></td></tr>
 						<tr><th> Gender:</th><td><?php echo $profile->personal_information->gender; ?></td></tr>
 						<tr><th> Civil Status:</th><td><?php echo $profile->personal_information->cstatus; ?></td></tr>
-						<tr><th> Email:</th><td><?php echo $profile->personal_information->email; ?></td></tr>
+						<tr><th style="width: 150px;"> Email:</th><td><?php echo $profile->personal_information->email; ?></td></tr>
 						<tr><th style="width: 150px;"> Contact Number:</th><td><?php echo $profile->personal_information->contact_no; ?></td></tr>
 					</tbody>
 				</table>

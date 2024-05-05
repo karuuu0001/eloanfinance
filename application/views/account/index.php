@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<li><a href="<?php echo base_url('account/login'); ?>">Login</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">No Account Yet?</li>
-                    <li><a href="#">Register here</a></li>
+                    <li><a href="<?php echo base_url('account/registration'); ?>">Register here</a></li>
                   </ul>
                 </li>
 								

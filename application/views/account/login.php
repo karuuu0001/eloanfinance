@@ -43,7 +43,7 @@
 		<input type="text" class="form-control" input-lg name="username" value="<?php echo set_value('username'); ?>" placeholder="Username">
 </div>
 	<div class="form-group">
-		<input type="password" class="form-control" input-lg name="password" placeholder="Password">
+		<input type="password" class="form-control" input-lg name="password" value="<?php echo set_value('password'); ?>" placeholder="Password">
 </div>
 
 <div class="panel-footer">

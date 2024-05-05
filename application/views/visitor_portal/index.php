@@ -1,30 +1,44 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header">Welcome <?php echo $profile->fname; ?></h1>
+          <p>Want to avail a loan?</p>
 
           <body>
-    <div class="container">
-        <h1 class="my-4">Active Loans</h1>
-        <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Loan ID</th>
-                    <th>User ID</th>
-                    <th>Amount</th>
-                    <th>Monthly Due</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <td>The Loan ID</td>
-                        <td>YOUR OWN PERSONAL ID</td>
-                        <td>Amount that you borrowed</td>
-                        <td>Monthly due</td>
-                    </tr>
+          <div class="col-md-5">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">BASIC LOAN</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">₱3000</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li> Emergency Loan</li>
+            <li>1% Interest Rate</li>
+            <li>3 Months Duration</li>
+          </ul>
+          <a class="w-100 btn btn-lg btn-primary" href="<?php echo site_url('visitor_portal/loan1'); ?>">Package 1</a>
+        </div>
+      </div>
+    </div>
 
-            </tbody>
-        </table>
+   
+    <div class="col-md-5">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">PRO LOANS</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">₱6000</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Personal Loans</li>
+            <li>10 GB of storage</li>
+            <li>Priority email support</li>
+            <li>Help center access</li>
+          </ul>
+          <a class="w-100 btn btn-lg btn-primary" href="<?php echo site_url('visitor_portal/loan2'); ?>">Package 2</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</div>
 </div>

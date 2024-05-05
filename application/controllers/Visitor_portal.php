@@ -27,24 +27,68 @@ class Visitor_portal extends CI_Controller {
 
 	public function index()
 	{	
-		
+		$this->load->model('user_model');
 
-		$this->load->view('visitor_portal/_header');
+			$id = $_SESSION['user_id'];
+			$data['profile'] = $this->user_model->get_profile_information($id);
+
+		$this->load->view('visitor_portal/_header', $data);
 		$this->load->view('visitor_portal/index');
 		$this->load->view('visitor_portal/_footer');
 	}
 
-	public function loan()
+	public function loan1()
 	{	
-		$this->load->view('visitor_portal/_header');
-		$this->load->view('visitor_portal/loan');
+		$this->_loan_submit();
+
+		$this->load->model('user_model');
+
+			$id = $_SESSION['user_id'];
+			$data['profile'] = $this->user_model->get_profile_information($id); 
+
+		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/loan1');
 		$this->load->view('visitor_portal/_footer');
 	}
+	//////////////////
+	public function _loan_submit()
+		{
+			if ( $this->input->post('submit') )
+			{
+				$this->form_validation->set_rules('gcash_name', 'Gcash Name', 'trim|required');
+				$this->form_validation->set_rules('contact_no','Gcash Name', 'trim|required',);
+				$this->form_validation->set_rules('email', 'Email', 'trim|required');
+	
+				if ($this->form_validation->run() != false)
+				{
+				$this->load->model('user_model');
+				$response = $this->user_model->save_loan_record();
+	
+				if( $response )
+				{
+					$this->session->set_flashdata('submit_success', 'The Data was successfully saved');
+				}
+	
+				
+				else 
+				{
+					$this->session->set_flashdata('submit_error', 'Sorry an error an occured the data was not saved.');
+				}
+	
+				redirect('visitor_portal/loan1');
+				}
+			}
+		}
 
-	public function payment()
+	public function history()
 	{	
-		$this->load->view('visitor_portal/_header');
-		$this->load->view('visitor_portal/payment');
+		$this->load->model('user_model');
+
+		$id = $_SESSION['user_id'];
+		$data['profile'] = $this->user_model->get_profile_information($id); 
+
+		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/history');
 		$this->load->view('visitor_portal/_footer');
 	}
 
@@ -107,6 +151,7 @@ class Visitor_portal extends CI_Controller {
 		}
 	}
 
+	//profile picture
 	public function profile_picture_edit()
 	{	
 	
