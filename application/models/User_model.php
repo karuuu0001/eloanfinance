@@ -5,6 +5,8 @@ class User_model extends CI_Model {
 
 	public function save_post_record()
 	{
+		$user_id = (string) $this->input->post('user_id');
+		$user_id = substr(uniqid('1', true), -2) . mt_rand(100,199);
 		$fname = (string) $this->input->post('fname');
 		$mname = (string) $this->input->post('mname');
 		$lname = (string) $this->input->post('lname');
@@ -13,6 +15,7 @@ class User_model extends CI_Model {
 		$password = (string) $this->input->post('password');
 
 		$data = array(
+			'user_id'=>$user_id,
 			'fname' => $fname,
 			'mname' => $mname,
 			'lname' => $lname,
@@ -173,10 +176,14 @@ class User_model extends CI_Model {
 
 	}
 //////////////////
-	public function save_loan_record()
+public function save_loan_record()
 	{
-		$loan_id = (int) $this->input->post('loan_id');
+		
 		$user_id = (int) $this->input->post('user_id');
+		
+		$loan_id = (int) $this->input->post('loan_id');
+		$ref_no = (string) $this->input->post('ref_no');
+		$ref_no = mt_rand(1,99999999);
 		$amount = (string) $this->input->post('amount');
 		$contact_no = (string) $this->input->post('contact_no');
 		$gcash_name = (string) $this->input->post('gcash_name');
@@ -185,6 +192,7 @@ class User_model extends CI_Model {
 		$data = array(
 			'loan_id' => $loan_id,
 			'user_id' => $user_id,
+			'ref_no' =>$ref_no,
 			'contact_no' => $contact_no,
 			'gcash_name' => $gcash_name,
 			'email' => $email,
@@ -192,16 +200,71 @@ class User_model extends CI_Model {
 		);
 
 
-		$response = $this->db->insert('loan_table', $data);
+			$this->db->where('user_id', $user_id);
+			$response = $this->db->insert('loan_table', $data);
 
-		if( $response )
-		{
-			return $this->db->insert_id();
-		}
-		else
-		{
-			return FALSE;
-		}
+			if( $response ) 
+			{
+				return $user_id;
+			} 
+			else
+			{
+				return FALSE;
+			}
+		
+			$response = $this->db->insert('loan_table', $data);
+
+			if( $response ) 
+				{
+				return $this->db->insert_id();
+				} 
+			else
+				{
+				return FALSE;
+				}
+			}
+
+////////////////////////////
+public function get_loan_information($id)
+{
+	$this->db->where('user_id', $id);
+	$query = $this->db->get('loan_table');
+	$row = $query->row();
+
+	if ($row)
+	{
+		$row->personal_information = $this->get_personal_loan_information($id);
 	}
 
+	return $row;
+}
+
+public function get_personal_loan_information($id)
+{
+	$this->db->where('user_id', $id);
+	$query = $this->db->get('loan_table');
+	$row = $query->row();
+
+	if( empty($row) )
+	{
+		$row = array(
+			'ref_no' => '',
+			'contact_no' => '',
+			'gcash_name' => '',
+			'email' => '',
+			'amount' => '',
+			'interest' => '',
+			'status' => ''
+		);
+	}
+
+	return (object) $row;
+}
+
+public function getUserLoans($userId) {
+	$this->db->where('user_id', $userId);
+	$query = $this->db->get('loan_table');
+	return $query->result();
+}
+		
 }

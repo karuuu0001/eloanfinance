@@ -3,7 +3,7 @@
           <p>Want to avail a loan?</p>
 
           <body>
-          <div class="col-md-5">
+          <div class="col-md-3">
       <div class="card mb-4 rounded-3 shadow-sm">
         <div class="card-header py-3">
           <h4 class="my-0 fw-normal">BASIC LOAN</h4>
@@ -21,7 +21,7 @@
     </div>
 
    
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="card mb-4 rounded-3 shadow-sm">
         <div class="card-header py-3">
           <h4 class="my-0 fw-normal">PRO LOANS</h4>

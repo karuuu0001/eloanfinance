@@ -40,7 +40,7 @@
 ?>
   
 <!-- Form -->
-<?php echo form_open_multipart('account/registration'); ?>
+<?php echo form_open_multipart('account/registration', array('id' => 'registration_form'));  ?>
   <div class="panel panel-default">
     <div class="panel-heading"></div>
     <div class="panel-body">
@@ -73,5 +73,26 @@
 </div>
     </div>
       </form>
+      <script>
+
+  document.getElementById('registration_form').addEventListener('submit', function(event) {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Regular expressions to check for alphabetical and numerical characters
+    var alphaNumericRegex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+
+    // Check if username and password contain both alphabetical and numerical characters
+    if (!alphaNumericRegex.test(username)) {
+      alert('Username must contain both alphabetical and numerical characters.');
+      event.preventDefault();
+    }
+
+    if (!alphaNumericRegex.test(password)) {
+      alert('Password must contain both alphabetical and numerical characters.');
+      event.preventDefault();
+    }
+  });
+</script>
     </div>
 </div>

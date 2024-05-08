@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Visitor_portal extends CI_Controller {
+class Admin_portal extends CI_Controller {
 
 	//checked the role if your session is visitor if yes you can access
 	//controller function you cant goback to user page access when you logout
