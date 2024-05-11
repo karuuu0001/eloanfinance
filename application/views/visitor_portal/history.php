@@ -30,7 +30,7 @@
     <td><?= $loan->email; ?></td>
     <td><?= $loan->amount; ?></td>
     <td><?= $loan->interest; ?>%</td>
-    <td><?= $loan->status; ?></td>
+    <td> <a class="btn btn-xs btn-primary"><strong><?= $loan->status; ?></strong></a></td>
     </tr>
     <?php endforeach;?>
 </tbody>

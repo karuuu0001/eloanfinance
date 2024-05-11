@@ -26,11 +26,14 @@
 
 				<table class="table">
 					<tbody>
-						<tr><th style="width: 150px;"> First Name:</th><td><?php echo $profile->fname; ?></td></tr>
-            <tr><th> Middle Name:</th><td><?php echo $profile->mname; ?></td></tr>
-            <tr><th> Last Name:</th><td><?php echo $profile->lname; ?></td></tr>
-						<tr><th> Suffix Name:</th><td><?php echo $profile->xname; ?></td></tr>
-					
+            <tr>
+              <th style="width: 150px;"> <span style="font-size: 20px;">Full Name: </span> </th>
+              <td>
+                <span style="font-size: 20px;">
+                  <?php echo create_fullname( $profile->fname, $profile->mname, $profile->lname, $profile->xname ); ?>
+                </span> 
+              </td>
+            </tr>					
 						<tr><th> Date of Birth:</th><td><?php echo $profile->personal_information->dob; ?></td></tr>
 						<tr><th> Place of Birth:</th><td><?php echo $profile->personal_information->pob; ?></td></tr>
 						<tr><th> Gender:</th><td><?php echo $profile->personal_information->gender; ?></td></tr>

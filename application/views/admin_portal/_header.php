@@ -20,7 +20,7 @@
 	<link href="<?php echo base_url('assets/css/style.css'); ?>" rel="stylesheet">
   </head>
 
-  <body class="visitor-portal-container">
+  <body class="admin-portal-container">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -50,15 +50,15 @@
 
 	  <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <div class="text-center">
-            <a href="<?php echo site_url('visitor_portal/profile_picture_edit');?>" >
-            <img style="width: 200px; height:auto; " class="img-circle img-thumbnail" src="<?php echo base_url('assets/images/user-icon.png'); ?>" alt="User Profile" >
-            </div>
-            <br>
-            <li><a href="<?php echo site_url('visitor_portal/dashboard'); ?>">Dashboard</a></li>
-            
-            <li><a href="<?php echo site_url('visitor_portal/history'); ?>">Loan History</a></li>
-						<li><a href="<?php echo site_url('visitor_portal/personal_information'); ?>">Personal Information</a></li>
+            <li class="active"><a href="#"><strong>Users</strong></a></li>
+            <li><a href="<?php echo site_url('admin_portal/users_list'); ?>">Users List - Active</a></li>
+            <li><a href="<?php echo site_url('admin_portal/users_list_deactivated'); ?>">Users List - Deactivated</a></li>
+
+            <li class="active"><a href="#"><strong>Loan List</strong></a></li>
+            <li><a href="<?php echo site_url('admin_portal/users_loan_list'); ?>">Loan List</a></li>
+
+            <li class="active"><a href="#"><strong>Repayment List</strong></a></li>
+            <li><a href="#">Payment List History</a></li>
           </ul>
 
 </div>

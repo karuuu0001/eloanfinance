@@ -12,7 +12,7 @@ margin-bottom: 100px;
 .container-fluid .main {
 	background-color: #fff;
 }
-
+.admin-portal-container,
 .visitor-portal-container {
 	background-color: #fff;
 }

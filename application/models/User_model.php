@@ -261,10 +261,36 @@ public function get_personal_loan_information($id)
 	return (object) $row;
 }
 
-public function getUserLoans($userId) {
+public function getUserLoans($userId) 
+{
 	$this->db->where('user_id', $userId);
 	$query = $this->db->get('loan_table');
 	return $query->result();
 }
+
+////function for showing the active list for the admin portal
+public function get_all_active_users()
+	{
+		$this->db->where('status', 'active');
+
+		$this->db->group_start();
+			$this->db->where('role', USER_ROLE_VISITOR);
+		$this->db->group_end();
+	
+		$query = $this->db->get('users');
+		$result = $query->result();
+
+		return $result;
+	}
+
+	public function get_all_loan_list()
+	{
+		$this->db->where('status', 'pending');
+	
+		$query = $this->db->get('loan_table');
+		$result = $query->result();
+
+		return $result;
+	}
 		
 }

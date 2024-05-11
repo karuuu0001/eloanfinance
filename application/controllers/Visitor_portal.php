@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Visitor_portal extends CI_Controller {
 
+	protected $data;
 	//checked the role if your session is visitor if yes you can access
 	//controller function you cant goback to user page access when you logout
 	public function __construct()
@@ -23,18 +24,27 @@ class Visitor_portal extends CI_Controller {
 		{
 			redirect('/');
 		}
-	}
-
-	public function index()
-	{	
 		$this->load->model('user_model');
 
 			$id = $_SESSION['user_id'];
 			$data['profile'] = $this->user_model->get_profile_information($id);
+	}
 
-		$this->load->view('visitor_portal/_header', $data);
-		$this->load->view('visitor_portal/index');
-		$this->load->view('visitor_portal/_footer');
+	public function index()
+	{	
+		$this->personal_information();
+	}
+
+	public function dashboard()
+	{
+		$this->load->model('user_model');
+
+		 	$id = $_SESSION['user_id'];
+			$data['profile'] = $this->user_model->get_profile_information($id);
+
+		 $this->load->view('visitor_portal/_header', $data);
+		 $this->load->view('visitor_portal/dashboard');
+		 $this->load->view('visitor_portal/_footer');
 	}
 
 	public function loan1()

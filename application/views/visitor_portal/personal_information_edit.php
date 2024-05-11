@@ -60,7 +60,12 @@
          </div>
          <div class="form-group">
         <label> Gender</label>
-        <input type="text" class="form-control" name="gender" value="<?php echo set_value('gender',$profile->personal_information->gender); ?>">
+        <select name="gender" class="form-control">
+            <option value="">----</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <!-- <input type="text" class="form-control" name="gender" value="<?php echo set_value('gender',$profile->personal_information->gender); ?>"> -->
          </div>
          <div class="form-group">
         <label> Civil Status</label>
