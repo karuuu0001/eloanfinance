@@ -19,33 +19,34 @@
 CREATE DATABASE IF NOT EXISTS `eloanfinance` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `eloanfinance`;
 
--- Dumping structure for table eloanfinance.loan
-CREATE TABLE IF NOT EXISTS `loan` (
-  `loan_id` int(11) NOT NULL,
-  `ref_no` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `ltype_id` int(30) NOT NULL,
-  `borrower_id` int(30) NOT NULL,
-  `purpose` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+-- Dumping structure for table eloanfinance.loan_table
+CREATE TABLE IF NOT EXISTS `loan_table` (
+  `loan_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref_no` varchar(50) NOT NULL,
+  `user_id` int(30) NOT NULL,
+  `contact_no` varchar(100) NOT NULL,
+  `gcash_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `amount` double NOT NULL,
-  `lplan_id` int(30) NOT NULL,
-  `status` tinyint(1) NOT NULL COMMENT '0=request, 1=confirmed, 2=released, 3=completed, 4=denied',
-  `date_released` datetime NOT NULL,
-  `date_created` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `interest` float NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Pending',
+  `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_released` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`loan_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table eloanfinance.payments
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` int(30) NOT NULL AUTO_INCREMENT,
-  `loan_id` int(30) NOT NULL,
-  `payee` text NOT NULL,
-  `amount` float NOT NULL DEFAULT 0,
-  `penalty_amount` float NOT NULL DEFAULT 0,
-  `overdue` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=no , 1 = yes',
+  `loan_id` int(11) NOT NULL DEFAULT 0,
+  `user_id` int(11) NOT NULL,
+  `ref_no` int(11) NOT NULL,
+  `amount` float NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -82,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 

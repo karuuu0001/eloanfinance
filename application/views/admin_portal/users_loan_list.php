@@ -52,7 +52,7 @@
                             
                             <td> <?php echo $row->gcash_name; ?></td>
                             <td><?php echo $row->ref_no;?></td>
-                            <td><?php echo ucfirst($row->date_created); ?></td>
+                            <td><?php echo ($row->date_created); ?></td>
                             <td> <a href="#" class="btn btn-xs btn-warning"><?php echo ucfirst($row->status); ?></a></td>
                             <td class="text-right">
                             <a href="#" class="btn btn-xs btn-primary">Edit</a>
