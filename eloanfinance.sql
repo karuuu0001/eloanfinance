@@ -16,7 +16,7 @@
 
 
 -- Dumping database structure for eloanfinance
-CREATE DATABASE IF NOT EXISTS `eloanfinance` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE IF NOT EXISTS `id22151856_eloanfinance /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `eloanfinance`;
 
 -- Dumping structure for table eloanfinance.loan_table

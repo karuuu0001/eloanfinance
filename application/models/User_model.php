@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
 
+	////////////////////////////////
+	// below is for applicant UI////
+	////////////////////////////////
+
+
+	//for the registration submit
 	public function save_post_record()
 	{
 		$user_id = (string) $this->input->post('user_id');
@@ -38,7 +44,7 @@ class User_model extends CI_Model {
 		}
 	}
 
-	
+	//for calling out the function get_personal_information which contains your personal information
 	public function get_profile_information($id)
 	{
 		$this->db->where('user_id', $id);
@@ -53,6 +59,7 @@ class User_model extends CI_Model {
 		return $row;
 	}
 
+	//showing your personal information using your own ID Account
 	public function get_personal_information($id)
 	{
 		$this->db->where('user_id', $id);
@@ -75,6 +82,7 @@ class User_model extends CI_Model {
 		return (object) $row;
 	}
 
+	//this is for updating the records or your personal information
 	public function update_post_record()
 	{
 		$user_id = (int) $this->input->post('user_id');
@@ -106,6 +114,7 @@ class User_model extends CI_Model {
 		}
 	}
 
+	//its connected to the above function
 	public function update_post_personal_information()
 	{
 		$user_id = (int) $this->input->post('user_id');
@@ -159,6 +168,8 @@ class User_model extends CI_Model {
 		}
 	}
 
+	//if the personal information exist 
+	//still connected to personal information
 	public function is_personal_information_exist($id)
 	{
 		$this->db->where('user_id', $id);
@@ -175,8 +186,9 @@ class User_model extends CI_Model {
 		}
 
 	}
-//////////////////
-public function save_loan_record()
+
+	//this is for saving a loan record or applying a loan
+	public function save_loan_record()
 	{
 		
 		$user_id = (int) $this->input->post('user_id');
@@ -224,8 +236,10 @@ public function save_loan_record()
 				}
 			}
 
-////////////////////////////
-public function get_loan_information($id)
+
+		//getting loan information 
+		//only query your own ID
+	public function get_loan_information($id)
 {
 	$this->db->where('user_id', $id);
 	$query = $this->db->get('loan_table');
@@ -239,6 +253,8 @@ public function get_loan_information($id)
 	return $row;
 }
 
+
+	//showing your personal loan table
 public function get_personal_loan_information($id)
 {
 	$this->db->where('user_id', $id);
@@ -261,14 +277,21 @@ public function get_personal_loan_information($id)
 	return (object) $row;
 }
 
-public function getUserLoans($userId) 
-{
-	$this->db->where('user_id', $userId);
-	$query = $this->db->get('loan_table');
-	return $query->result();
-}
+	//showing the all your existing loans
+	public function getUserLoans($userId) 
+	{
+		$this->db->where('user_id', $userId);
+		$query = $this->db->get('loan_table');
+		return $query->result();
+	}
 
-////function for showing the active list for the admin portal
+/////////////////////////////////////////
+// below are the function for admin UI
+///////////////////////////////////////
+
+	//this is for admin UI
+
+	//function for showing the active list for the admin portal
 public function get_all_active_users()
 	{
 		$this->db->where('status', 'active');
@@ -283,6 +306,7 @@ public function get_all_active_users()
 		return $result;
 	}
 
+	//showing all the existing loans of the active users
 	public function get_all_loan_list()
 	{
 		$this->db->where('status', 'pending');
