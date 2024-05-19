@@ -51,9 +51,24 @@
 	  <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <div class="text-center">
+
+              <?php 
+              $img_src = base_url('assets/images/user-icon.png');
+              
+              if (isset($profile->personal_information->photo) && !empty($profile->personal_information->photo))
+              {
+                
+                if( file_exists('./uploads/'.$profile->personal_information->photo))
+                {
+                  $img_src = base_url('uploads/'.$profile->personal_information->photo);
+                }
+              }
+              ?>
+
             <a href="<?php echo site_url('visitor_portal/profile_picture_edit');?>" >
-            <img style="width: 200px; height:auto; " class="img-circle img-thumbnail" src="<?php echo base_url('assets/images/user-icon.png'); ?>" alt="User Profile" >
+            <img style="width: 200px; height:auto; " class="img-circle img-thumbnail" src="<?php echo $img_src; ?>" alt="User Profile" >
             </div>
+
             <br>
             <li><a href="<?php echo site_url('visitor_portal/dashboard'); ?>">Dashboard</a></li>
             

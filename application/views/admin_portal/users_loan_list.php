@@ -34,8 +34,8 @@
                             <th>GCASH Account</th>
                             <th>Referal No</th>
                             <th>Date</th>
-                            <th>Status</th>
-                            <th class="text-right">Action</th>
+                            <th  class="text-right">Status</th>
+                            <!-- <th class="text-right">Action</th> -->
                             </strong>
                         </tr>
                     </thead>
@@ -53,11 +53,11 @@
                             <td> <?php echo $row->gcash_name; ?></td>
                             <td><?php echo $row->ref_no;?></td>
                             <td><?php echo ($row->date_created); ?></td>
-                            <td> <a href="#" class="btn btn-xs btn-warning"><?php echo ucfirst($row->status); ?></a></td>
-                            <td class="text-right">
+                            <td class="text-right"> <a href="#" class="btn btn-xs btn-warning"><?php echo ucfirst($row->status); ?></a></td>
+                            <!-- <td class="text-right">
                             <a href="#" class="btn btn-xs btn-primary">Edit</a>
                             <a href="#" onclick="return confirm('Are you sure want to deactivate this user?')" class="btn btn-xs btn-danger">Deactivate</a>
-                            </td>
+                            </td> -->
                         </tr> 
                                     <?php
 

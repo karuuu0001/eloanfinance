@@ -6,16 +6,25 @@
             <div class="col-xs-12">
 
 			<?php
-                            if( $this->session->flashdata('submit_success'))
-                            {
-                                ?>
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <?php echo $this->session->flashdata('submit_success'); ?>
-                                </div>
-                            <?php
-                            }
-                            ?>
+            if( $this->session->flashdata('submit_success'))
+            {
+                ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo $this->session->flashdata('submit_success'); ?>
+                </div>
+                <?php
+            }
+            elseif( $this->session->flashdata('submit_error'))
+            {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo $this->session->flashdata('submit_error'); ?>
+                </div>
+                <?php
+            }
+                ?>
 
 				<table class="table table-bordered table-striped">
                     <thead>
@@ -23,7 +32,7 @@
                             <th>Name</th>
                             <th>Username</th>
                             <th>Role</th>
-                            <th class="text-right">Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
 					<tbody>
@@ -38,9 +47,9 @@
                             <td> <?php echo create_fullname($row->fname, $row->mname, $row->lname, $row->xname); ?></td>
                             <td><?php echo $row->username;?></td>
                             <td><?php echo ucfirst($row->role); ?></td>
-                            <td class="text-right">
-                            <a href="#" class="btn btn-xs btn-primary">Edit</a>
-                            <a href="#" onclick="return confirm('Are you sure want to deactivate this user?')" class="btn btn-xs btn-danger">Deactivate</a>
+                            <td class="text-center">
+                            <!-- <a href="#" class="btn btn-xs btn-primary">Edit</a> -->
+                            <a href="<?php echo site_url('admin_portal/deactivate_user/'.$id); ?>" onclick="return confirm('Are you sure want to deactivate this user?')" class="btn btn-xs btn-danger">Deactivate</a>
                             </td>
                         </tr> 
                                     <?php

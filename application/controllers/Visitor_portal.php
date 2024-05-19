@@ -26,8 +26,8 @@ class Visitor_portal extends CI_Controller {
 		}
 		$this->load->model('user_model');
 
-			$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id);
+		$id = $_SESSION['user_id'];
+		$this->data['profile'] = $this->user_model->get_profile_information($id);
 	}
 
 	public function index()
@@ -40,9 +40,9 @@ class Visitor_portal extends CI_Controller {
 		$this->load->model('user_model');
 
 		 	$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id);
+			$this->data['profile'] = $this->user_model->get_profile_information($id);
 
-		 $this->load->view('visitor_portal/_header', $data);
+		 $this->load->view('visitor_portal/_header', $this->data);
 		 $this->load->view('visitor_portal/dashboard');
 		 $this->load->view('visitor_portal/_footer');
 	}
@@ -54,9 +54,9 @@ class Visitor_portal extends CI_Controller {
 		$this->load->model('user_model');
 
 			$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id); 
+			$this->data['profile'] = $this->user_model->get_profile_information($id); 
 
-		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/_header', $this->data);
 		$this->load->view('visitor_portal/loan1');
 		$this->load->view('visitor_portal/_footer');
 	}
@@ -96,9 +96,9 @@ class Visitor_portal extends CI_Controller {
 
 		
 		$userId = $_SESSION['user_id'];
-		$data['loans'] = $this->user_model->getUserLoans($userId);
+		$this->data['loans'] = $this->user_model->getUserLoans($userId);
 
-		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/_header', $this->data);
 		$this->load->view('visitor_portal/history');
 		$this->load->view('visitor_portal/_footer');
 	}
@@ -109,9 +109,9 @@ class Visitor_portal extends CI_Controller {
 		$this->load->model('user_model');
 
 			$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id);
+			$this->data['profile'] = $this->user_model->get_profile_information($id);
 
-		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/_header', $this->data);
 		$this->load->view('visitor_portal/personal_information');
 		$this->load->view('visitor_portal/_footer');
 	}
@@ -123,9 +123,9 @@ class Visitor_portal extends CI_Controller {
 		$this->load->model('user_model');
 
 			$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id);
+			$this->data['profile'] = $this->user_model->get_profile_information($id);
 
-		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/_header', $this->data);
 		$this->load->view('visitor_portal/personal_information_edit');
 		$this->load->view('visitor_portal/_footer');
 	}
@@ -164,17 +164,54 @@ class Visitor_portal extends CI_Controller {
 
 	//profile picture
 	public function profile_picture_edit()
-	{	
-	
+	{
+		$this->_profile_picture_edit_submit();
 
 		$this->load->model('user_model');
 
 			$id = $_SESSION['user_id'];
-			$data['profile'] = $this->user_model->get_profile_information($id);
+			$this->data['profile'] = $this->user_model->get_profile_information($id);
 
-		$this->load->view('visitor_portal/_header', $data);
+		$this->load->view('visitor_portal/_header', $this->data);
 		$this->load->view('visitor_portal/profile_picture_edit');
 		$this->load->view('visitor_portal/_footer');
+	}
+
+	public function _profile_picture_edit_submit()
+	{
+		if ($this->input->post('submit'))
+		{
+
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'jpg|png';
+
+			$this->load->library('upload', $config);
+
+			if( ! $this->upload->do_upload('profile_picture'))
+			{
+				$this->session->set_flasdata('submit_error', $this->upload->display_errors());
+			}
+			else
+			{ 
+				
+				$file_name = $this->upload->data('file_name');
+
+				$this->load->model('user_model');
+				$response = $this->user_model->update_post_profile_picture($file_name);
+
+				if( $response )
+					{
+						$this->session->set_flashdata('submit_success', 'Your Profile Picture  was successfully updated');
+
+					}
+				else 
+					{
+						$this->session->set_flashdata('submit_error', 'Sorry an error an occured the data was not updated.');	
+					}
+			}
+
+			redirect('visitor_portal/profile_picture_edit');
+		}
 	}
 }
 

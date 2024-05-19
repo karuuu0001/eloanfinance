@@ -8,6 +8,17 @@
                           
 
 <!--if empty validation errors -->
+<?php
+                            if( $this->session->flashdata('submit_success'))
+                            {
+                                ?>
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <?php echo $this->session->flashdata('submit_success'); ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
 
 <?php 
 	if(!empty(validation_errors()))
@@ -29,6 +40,8 @@
     <div class="panel-body">
       
     <div class="form-group">
+      <label for="exampleInputEmail">Upload your profile picture</label>
+      <input type="file" class="form-control" name="profile_picture">
        
       <div class="panel-footer">
         <input type="submit" name="submit" value="Save" class="btn btn-success btn-lg">

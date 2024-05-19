@@ -62,12 +62,49 @@ class Admin_portal extends CI_Controller {
 
 	public function users_list_deactivated()
 	{	
+		$this->load->model('user_model');
+		$this->data['result'] = $this->user_model->get_all_deactivated_users();
+
 
 		$this->load->view('admin_portal/_header', $this->data);
 		$this->load->view('admin_portal/users_list_deactivated');
 		$this->load->view('admin_portal/_footer');
 	}
 	
+	public function deactivate_user($id)
+	{
+		$this->load->model('user_model');
+		$response = $this->user_model->deactivate_user($id);
+
+		if ($response)
+		{
+			$this->session->set_flashdata('submit_success', 'The user was successfully deactivated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('submit_error', 'Sorry! An error occur the user was not deactivated.');
+		}
+
+		redirect ('admin_portal/users_list');
+	}
+
+	public function reactivate_user($id)
+	{
+		$this->load->model('user_model');
+		$response = $this->user_model->reactivate_user($id);
+
+		if ($response)
+		{
+			$this->session->set_flashdata('submit_success', 'The user was successfully Reactivated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('submit_error', 'Sorry! An error occur the user was not Reactivated.');
+		}
+
+		redirect ('admin_portal/users_list_deactivated');
+	}
+
 }
 
 
