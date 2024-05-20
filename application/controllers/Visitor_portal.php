@@ -187,6 +187,11 @@ class Visitor_portal extends CI_Controller {
 
 			$this->load->library('upload', $config);
 
+			 // Set desired image dimensions
+			 $config['width'] = 200; // Desired width
+			 $config['height'] = 200; // Desired height
+			 $this->upload->initialize($config);
+
 			if( ! $this->upload->do_upload('profile_picture'))
 			{
 				$this->session->set_flasdata('submit_error', $this->upload->display_errors());
@@ -213,6 +218,8 @@ class Visitor_portal extends CI_Controller {
 			redirect('visitor_portal/profile_picture_edit');
 		}
 	}
+
+	
 }
 
 

@@ -59,6 +59,17 @@ class Admin_portal extends CI_Controller {
 		$this->load->view('admin_portal/_footer');
 	}
 
+	public function users_loan_list_approved()
+	{	
+
+		$this->load->model('user_model');
+		$this->data['result'] = $this->user_model->get_all_loan_list_approved();
+
+		$this->load->view('admin_portal/_header', $this->data);
+		$this->load->view('admin_portal/users_loan_list');
+		$this->load->view('admin_portal/_footer');
+	}
+
 
 	public function users_list_deactivated()
 	{	
@@ -105,6 +116,22 @@ class Admin_portal extends CI_Controller {
 		redirect ('admin_portal/users_list_deactivated');
 	}
 
+	public function approve_loan($id)
+	{
+		$this->load->model('user_model');
+		$response = $this->user_model->approve_loan($id);
+
+		if ($response)
+		{
+			$this->session->set_flashdata('submit_success', 'The user was successfully Reactivated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('submit_error', 'Sorry! An error occur the user was not Reactivated.');
+		}
+
+		redirect ('admin_portal/users_loan_list');
+	}
 }
 
 

@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo site_url('visitor_portal/index'); ?>">Eloan Finance </a>
+          <a class="navbar-brand" href="#">Eloan Finance </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -55,7 +55,8 @@
             <li><a href="<?php echo site_url('admin_portal/users_list_deactivated'); ?>">Users List - Deactivated</a></li>
 
             <li class="active"><a href="#"><strong>Loan List</strong></a></li>
-            <li><a href="<?php echo site_url('admin_portal/users_loan_list'); ?>">Loan List</a></li>
+            <li><a href="<?php echo site_url('admin_portal/users_loan_list'); ?>">Loan List  - Request</a></li>
+            <li><a href="<?php echo site_url('admin_portal/users_loan_list_approved'); ?>">Loan List  - Approved & Released</a></li>
 
             <li class="active"><a href="#"><strong>Repayment List</strong></a></li>
             <li><a href="#">Payment List History</a></li>

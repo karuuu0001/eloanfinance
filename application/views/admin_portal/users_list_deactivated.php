@@ -56,6 +56,12 @@
 
                                 }
                             }
+                            else
+                            {
+                                ?>
+                                <tr><td colspan="4" class="text-center"> No Record Found</td></tr>
+                                <?php
+                            }
                         ?>
 					</tbody>
 				</table>

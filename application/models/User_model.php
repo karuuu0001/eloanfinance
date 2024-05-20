@@ -394,6 +394,16 @@ public function get_all_active_users()
 		return $result;
 	}
 
+	public function get_all_loan_list_approved()
+	{
+		$this->db->where('status', 'approved');
+	
+		$query = $this->db->get('loan_table');
+		$result = $query->result();
+
+		return $result;
+	}
+
 	//used for deactivating the users account
 	public function deactivate_user($id)
 	{
@@ -423,6 +433,25 @@ public function get_all_active_users()
 
 		$this->db->where('user_id', $id);
 		$response = $this->db->update('users', $data);
+
+		if ($response)
+		{
+			return $id;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
+	public function approve_loan($id)
+	{
+		$data = array(
+			'status' => 'approved'
+		);
+
+		$this->db->where('user_id', $id);
+		$response = $this->db->update('loan_table', $data);
 
 		if ($response)
 		{

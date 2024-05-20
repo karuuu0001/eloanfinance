@@ -1,0 +1,184 @@
+public function _profile_picture_edit_submit()
+{
+    if ($this->input->post('submit'))
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png';
+
+        $this->load->library('upload', $config);
+
+        // Set desired image dimensions
+        $config['width'] = 200; // Desired width
+        $config['height'] = 200; // Desired height
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('profile_picture'))
+        {
+            $this->session->set_flasdata('submit_error', $this->upload->display_errors());
+        }
+        else
+        { 
+            $file_name = $this->upload->data('file_name');
+
+            $this->load->model('user_model');
+            $response = $this->user_model->update_post_profile_picture($file_name);
+
+            if ($response)
+            {
+                // Image uploaded successfully
+                // Get the uploaded file path
+                $uploaded_image_path = $config['upload_path'] . $file_name;
+
+                // Load the Intervention Image library
+                $this->load->library('image_lib');
+
+                // Set config for image processing
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = $uploaded_image_path;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = TRUE;
+                $config['width'] = $config['width'];
+                $config['height'] = $config['height'];
+
+                // Initialize the image processing
+                $this->image_lib->initialize($config);
+
+                // Resize the image to fit within the desired resolution
+                if ($this->image_lib->resize())
+                {
+                    $this->session->set_flashdata('submit_success', 'Your Profile Picture was successfully updated');
+
+                    // Further processing code goes here
+                }
+                else
+                {
+                    // Error occurred while resizing
+                    $error = $this->image_lib->display_errors();
+                    // Handle the error
+                }
+            }
+            else 
+            {
+                $this->session->set_flashdata('submit_error', 'Sorry, an error occurred and the data was not updated.'); 
+            }
+        }
+
+        redirect('visitor_portal/profile_picture_edit');
+    }
+}
+
+
+
+public function _profile_picture_edit_submit()
+{
+    if ($this->input->post('submit'))
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png';
+
+        $this->load->library('upload', $config);
+
+        // Set desired image dimensions
+        $config['width'] = 200; // Desired width
+        $config['height'] = 200; // Desired height
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('profile_picture'))
+        {
+            $this->session->set_flasdata('submit_error', $this->upload->display_errors());
+        }
+        else
+        { 
+            $file_name = $this->upload->data('file_name');
+
+            // Get the uploaded image path
+            $uploaded_image_path = $config['upload_path'] . $file_name;
+
+            // Load the image using GD library
+            $image = imagecreatefromjpeg($uploaded_image_path); // For JPEG images. For PNG, use imagecreatefrompng()
+
+            // Get the uploaded image dimensions
+            $uploaded_image_width = imagesx($image);
+            $uploaded_image_height = imagesy($image);
+
+            // Calculate aspect ratios
+            $uploaded_image_aspect_ratio = $uploaded_image_width / $uploaded_image_height;
+            $desired_aspect_ratio = $config['width'] / $config['height'];
+
+            // Calculate new image dimensions and positions
+            if ($uploaded_image_aspect_ratio > $desired_aspect_ratio)
+            {
+                // Crop width should be equal to desired width
+                $new_width = $config['width'];
+                $new_height = $uploaded_image_height * ($config['width'] / $uploaded_image_width);
+                $x_offset = 0;
+                $y_offset = ($config['height'] - $new_height) / 2;
+            }
+            else
+            {
+                // Crop height should be equal to desired height
+                $new_height = $config['height'];
+                $new_width = $uploaded_image_width * ($config['height'] / $uploaded_image_height);
+                $x_offset = ($config['width'] - $new_width) / 2;
+                $y_offset = 0;
+            }
+
+            // Create a new image with desired dimensions
+
+
+            public function _profile_picture_edit_submit()
+{
+    if ($this->input->post('submit'))
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png';
+
+        $this->load->library('upload', $config);
+
+        // Set desired image dimensions
+        $config['width'] = 200; // Desired width
+        $config['height'] = 200; // Desired height
+        $this->upload->initialize($config);
+
+        // Upload the photo
+        if ($this->upload->do_upload('photo'))
+        {
+            // Image uploaded successfully
+            // Get the uploaded file path
+            $upload_data = $this->upload->data();
+            $file_path = $upload_data['full_path'];
+
+            // Load the Intervention Image library
+            $this->load->library('image_lib');
+
+            // Set config for image processing
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $file_path;
+            $config['maintain_ratio'] = TRUE;
+            $config['width'] = 200;
+            $config['height'] = 200;
+
+            // Initialize the image processing
+            $this->image_lib->initialize($config);
+
+            // Crop the image to fit within the desired dimensions
+            if ($this->image_lib->crop())
+            {
+                // Image cropped successfully
+                // Further processing code goes here
+            }
+            else
+            {
+                // Error occurred while cropping
+                $error = $this->image_lib->display_errors();
+                // Handle the error
+            }
+        }
+        else
+        {
+            // Error occurred while uploading
+            $error = $this->upload->display_errors();
+            // Handle the error
+        }
+    }
+}

@@ -7,25 +7,17 @@
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 			<?php
-            if( $this->session->flashdata('submit_success'))
-            {
-                ?>
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <?php echo $this->session->flashdata('submit_success'); ?>
-                </div>
-                <?php
-            }
-            elseif( $this->session->flashdata('submit_error'))
-            {
-                ?>
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <?php echo $this->session->flashdata('submit_error'); ?>
-                </div>
-                <?php
-            }
-                ?>
+                            if( $this->session->flashdata('submit_success'))
+                            {
+                                ?>
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <?php echo $this->session->flashdata('submit_success'); ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                      
                  <div>
                 <input class="form-control" id="myInput" type="text" placeholder="Search..">
                 
@@ -61,14 +53,9 @@
                             <td> <?php echo $row->gcash_name; ?></td>
                             <td><?php echo $row->ref_no;?></td>
                             <td><?php echo ($row->date_created); ?></td>
-                            <td class="text-right">
-                                <a href="#" onclick="return confirm('Are you sure want to approve this user?')" class="btn btn-xs btn-warning"><?php echo ucfirst($row->status); ?></a></td>
-                            <td class="text-right">
-                            <a href="#" class="btn btn-xs btn-primary">Edit</a>
-                            <a href="<?php echo site_url('admin_portal/approve_loan/'.$id); ?>" onclick="return confirm('Are you sure want to deactivate this user?')" class="btn btn-xs btn-danger">Deactivate</a>
-                            </td>
-                        </tr> 
-                                    <?php
+                            <td class="text-right"> <a href="#" class="btn btn-xs btn-warning"><?php echo ucfirst($row->status); ?></a></td>
+                         
+                        <?php
 
                                 }
                             }
