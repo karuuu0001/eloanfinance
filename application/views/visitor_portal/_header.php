@@ -35,8 +35,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-
-            <li><a href="<?php echo site_url('account/logout'); ?>">Logout</a></li>
+            
+            <!-- <li><strong><?php echo create_fullname($profile->fname, $profile->mname, $profile->lname, $profile->xname);?></strong> &nbsp; <span class="badge"><?php echo ucfirst( $profile->role ) ?></span></li> -->
+            <li><a href="<?php echo site_url('account/login'); ?>"><span class="btn btn-xs btn-danger">Logout</span></a></li>
           </ul>
           <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -66,7 +67,7 @@
               ?>
 
             <a href="<?php echo site_url('visitor_portal/profile_picture_edit');?>" >
-            <img style="width: 200px; height:auto; " class="img-circle img-thumbnail" src="<?php echo $img_src; ?>" alt="User Profile" >
+            <img style="width: 200px; height:200px; " class="img-circle img-thumbnail" src="<?php echo $img_src; ?>" alt="User Profile" >
             </div>
 
             <br>
